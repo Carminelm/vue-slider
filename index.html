@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Slider</title>
+    <!--add file css-->
+    <link rel="stylesheet" href="stle.css" />
+    <!--/add file css-->
+</head>
+
+<body>
+    <!--spazio gestito da vuejs-->
+    <div id="app" v-cloak>
+        <div class="container">
+            <div class="slider-wrapper" :tabindex="activeSlide" @mouseenter="stopAutoPlay" @mouseleave="startAutoPlay">
+                <!--slider-->
+                <div class="item">
+                    <img :src="slides[activeSlide].image" :alt="slides[activeSlide].title" />
+                    <div class="text">
+                        <h3>{{ slides[activeSlide].title }}</h3>
+                        <p>{{ slides[activeSlide].text }}</p>
+                    </div>
+                </div>
+                <!--slider-->
+
+                <!--side right: thumbs-->
+                <div class="thumbs">
+                    <!--button to discover images-->
+                    <div @click="prev()" class="prev"></div>
+                    <div @click="next()" class="next"></div>
+                    <!--/button to discover images-->
+                    <!--thumbnail-->
+                    <div v-for="(thumb, index) in slides" class="thumb">
+                        <img 
+                        :src="thumb.image" 
+                        :alt="thumb.title" 
+                        class="thumb"
+                        :class="index === activeSlide ? 'active' : ''"
+                        @click="clickThumbnailImage(index)">
+                    </div>
+                    <!--/thumbnail-->
+                </div>
+                <!--/side right: thumbs-->
+            </div>
+        </div>
+    </div>
+    <!--/spazio gestito da vuejs-->
+
+    <!--vuejs CDN-->
+    <script src='https://unpkg.com/vue@3/dist/vue.global.js'></script>
+    <!--/vuejs CDN-->
+    <!--add file javascript-->
+    <script src="main.js"></script>
+    <!--/add file javascript-->
+</body>
+
+</html>
